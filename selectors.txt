@@ -1,0 +1,51 @@
+###convert string format of html contain into html response object(select object) for extracting
+data using selector tools:
+# from scrapy.selector import Selector
+# html_content = """ <html>
+#  <head>
+#   <base href='http://example.com/' />
+#   <title>Example website</title>
+#  </head>
+#  <body>
+#   <div id='images'>
+#    <a href='image1.html'>Name: My image 1 <br /><img src='image1_thumb.jpg' /></a>
+#    <a href='image2.html'>Name: My image 2 <br /><img src='image2_thumb.jpg' /></a>
+#    <a href='image3.html'>Name: My image 3 <br /><img src='image3_thumb.jpg' /></a>
+#    <a href='image4.html'>Name: My image 4 <br /><img src='image4_thumb.jpg' /></a>
+#    <a href='image5.html'>Name: My image 5 <br /><img src='image5_thumb.jpg' /></a>
+#   </div>
+#  </body>
+# </html>"""
+#
+# reponse_object = Selector(text=response)
+# title_content = reponse_object.xpath('//span/text()').get()
+# Output: 'Example website'
+
+###Another way
+# from scrapy.http import HtmlResponse
+# response = HtmlResponse(url='http://example.com', body=html_content)
+# title_content = response.xpath('//span/text()').get()
+#Output: 'Example website'
+
+
+####.get() or extract_first() uses:::===>
+It is always returns the single result. If there is several matches then contain of the first
+match is return, else None is returned
+
+#### .getall() or extract() uses:::===>
+It is always returns the list of results.It there is no matches then empty list will return.
+Note: if default pass as "not found" instead of None the use below code:
+   """
+   title_content = response.xpath('//span/text()').get(default="Not found")
+   output: Not found
+   """
+
+#differnt type of method to extract data from selector object:
+1. xpath()
+2. css()
+
+
+
+
+
+
